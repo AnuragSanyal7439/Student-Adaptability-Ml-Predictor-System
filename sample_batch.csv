@@ -1,0 +1,21 @@
+Gender,Age,Education Level,Institution Type,IT Student,Location,Load-shedding,Financial Condition,Internet Type,Network Type,Class Duration,Self Lms,Device
+Boy,26-30,University,Government,No,No,Low,Poor,2G,2G,1-3,Yes,Mobile
+Girl,21-25,College,Non Government,No,No,Low,Rich,4G,2G,0,No,Computer
+Boy,6-10,College,Government,No,Yes,Low,Poor,2G,4G,0,No,Mobile
+Boy,16-20,University,Non Government,No,No,Low,Mid,Mobile Data,4G,0,No,Tab
+Boy,26-30,College,Non Government,No,Yes,Low,Rich,4G,4G,3-6,No,Tab
+Girl,26-30,University,Non Government,No,No,Low,Mid,Wifi,3G,1-3,Yes,Tab
+Boy,6-10,University,Government,No,No,Low,Poor,2G,3G,0,No,Computer
+Boy,16-20,School,Non Government,Yes,Yes,Low,Rich,Mobile Data,3G,0,Yes,Mobile
+Boy,21-25,University,Government,Yes,No,High,Poor,Wifi,2G,0,No,Mobile
+Girl,1-5,School,Non Government,No,Yes,Low,Mid,Wifi,3G,3-6,Yes,Mobile
+Boy,16-20,University,Government,No,No,High,Poor,3G,2G,3-6,No,Computer
+Boy,6-10,University,Non Government,No,Yes,High,Rich,4G,2G,1-3,No,Tab
+Boy,26-30,School,Government,No,Yes,High,Rich,2G,3G,3-6,No,Tab
+Boy,21-25,School,Government,No,No,Low,Mid,Mobile Data,3G,0,No,Mobile
+Girl,16-20,University,Non Government,No,No,Low,Poor,3G,3G,1-3,Yes,Tab
+Boy,1-5,College,Government,No,Yes,Low,Rich,4G,4G,0,No,Tab
+Girl,1-5,School,Non Government,No,No,Low,Mid,3G,3G,0,Yes,Computer
+Girl,11-15,College,Non Government,Yes,No,High,Rich,4G,4G,3-6,Yes,Computer
+Girl,11-15,College,Non Government,No,No,Low,Rich,4G,2G,1-3,Yes,Computer
+Boy,6-10,College,Non Government,Yes,Yes,Low,Poor,2G,4G,3-6,Yes,Computer
