@@ -1,0 +1,106 @@
+{
+  "accuracy": 77.59,
+  "precision": 77.77,
+  "recall": 77.59,
+  "f1_score": 77.67,
+  "confusion_matrix": [
+    [
+      54,
+      15,
+      0
+    ],
+    [
+      16,
+      61,
+      10
+    ],
+    [
+      1,
+      12,
+      72
+    ]
+  ],
+  "classification_report": {
+    "Low": {
+      "precision": 0.7605633802816901,
+      "recall": 0.782608695652174,
+      "f1-score": 0.7714285714285715,
+      "support": 69.0
+    },
+    "Moderate": {
+      "precision": 0.6931818181818182,
+      "recall": 0.7011494252873564,
+      "f1-score": 0.6971428571428572,
+      "support": 87.0
+    },
+    "High": {
+      "precision": 0.8780487804878049,
+      "recall": 0.8470588235294118,
+      "f1-score": 0.8622754491017964,
+      "support": 85.0
+    },
+    "accuracy": 0.7759336099585062,
+    "macro avg": {
+      "precision": 0.7772646596504377,
+      "recall": 0.7769389814896474,
+      "f1-score": 0.7769489592244083,
+      "support": 241.0
+    },
+    "weighted avg": {
+      "precision": 0.777675675363976,
+      "recall": 0.7759336099585062,
+      "f1-score": 0.7766531666956544,
+      "support": 241.0
+    }
+  },
+  "selected_model_name": "LogisticRegression",
+  "model_comparison": {
+    "GaussianNB": {
+      "accuracy": 71.78,
+      "precision": 72.89,
+      "recall": 71.78,
+      "f1_score": 72.17
+    },
+    "LogisticRegression": {
+      "accuracy": 77.59,
+      "precision": 77.77,
+      "recall": 77.59,
+      "f1_score": 77.67
+    },
+    "RandomForestClassifier": {
+      "accuracy": 69.29,
+      "precision": 69.16,
+      "recall": 69.29,
+      "f1_score": 69.15
+    },
+    "GradientBoostingClassifier": {
+      "accuracy": 73.44,
+      "precision": 73.41,
+      "recall": 73.44,
+      "f1_score": 73.43
+    }
+  },
+  "class_labels": [
+    "Low",
+    "Moderate",
+    "High"
+  ],
+  "feature_columns": [
+    "Gender",
+    "Age",
+    "Education Level",
+    "Institution Type",
+    "IT Student",
+    "Location",
+    "Load-shedding",
+    "Financial Condition",
+    "Internet Type",
+    "Network Type",
+    "Class Duration",
+    "Self Lms",
+    "Device"
+  ],
+  "train_samples": 964,
+  "test_samples": 241,
+  "total_samples": 1205
+}

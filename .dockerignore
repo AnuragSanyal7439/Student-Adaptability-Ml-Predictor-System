@@ -1,0 +1,17 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+node_modules
+.venv
+venv
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist
+.git
+.gitignore
+.env
+.env.*

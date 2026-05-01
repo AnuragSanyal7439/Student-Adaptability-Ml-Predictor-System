@@ -1,0 +1,63 @@
+{
+  "Gender": [
+    "Boy",
+    "Girl"
+  ],
+  "Age": [
+    "1-5",
+    "6-10",
+    "11-15",
+    "16-20",
+    "21-25",
+    "26-30"
+  ],
+  "Education Level": [
+    "School",
+    "College",
+    "University"
+  ],
+  "Institution Type": [
+    "Government",
+    "Non Government"
+  ],
+  "IT Student": [
+    "No",
+    "Yes"
+  ],
+  "Location": [
+    "No",
+    "Yes"
+  ],
+  "Load-shedding": [
+    "Low",
+    "High"
+  ],
+  "Financial Condition": [
+    "Poor",
+    "Mid",
+    "Rich"
+  ],
+  "Internet Type": [
+    "Mobile Data",
+    "Wifi"
+  ],
+  "Network Type": [
+    "2G",
+    "3G",
+    "4G"
+  ],
+  "Class Duration": [
+    "0",
+    "1-3",
+    "3-6"
+  ],
+  "Self Lms": [
+    "No",
+    "Yes"
+  ],
+  "Device": [
+    "Mobile",
+    "Tab",
+    "Computer"
+  ]
+}
