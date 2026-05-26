@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: student-adaptability-ml-predictor
+    env: docker
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: FLASK_DEBUG
+        value: "false"
+      - key: WEB_CONCURRENCY
+        value: "2"

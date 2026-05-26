@@ -125,7 +125,13 @@ async function getApiError(response: Response) {
   }
 }
 
-function downloadBlob(blob: Blob, filename: string) {
+function getDownloadFilename(response: Response, fallback: string) {
+  const disposition = response.headers.get('content-disposition');
+  const match = disposition?.match(/filename\*?=(?:UTF-8'')?["']?([^"';]+)["']?/i);
+  return match?.[1] ? decodeURIComponent(match[1]) : fallback;
+}
+
+function downloadBlob(blob: Blob, filename: string, keepUrl = false) {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
   anchor.href = url;
@@ -133,7 +139,10 @@ function downloadBlob(blob: Blob, filename: string) {
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
-  URL.revokeObjectURL(url);
+  if (!keepUrl) {
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  return url;
 }
 
 function PercentBar({ label, value }: { label: string; value: number }) {
@@ -188,6 +197,8 @@ function App() {
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [featureError, setFeatureError] = useState('');
   const [predictionError, setPredictionError] = useState('');
+  const [pdfMessage, setPdfMessage] = useState('');
+  const [pdfDownload, setPdfDownload] = useState<{ url: string; filename: string } | null>(null);
   const [metricsError, setMetricsError] = useState('');
   const [batchMessage, setBatchMessage] = useState('');
   const [batchError, setBatchError] = useState('');
@@ -235,6 +246,14 @@ function App() {
 
     void loadInitialData();
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (pdfDownload) {
+        URL.revokeObjectURL(pdfDownload.url);
+      }
+    };
+  }, [pdfDownload]);
 
   const featureOptions = useMemo(() => featureInfo?.features ?? [], [featureInfo]);
 
@@ -284,6 +303,7 @@ function App() {
     }
     setIsExportingPdf(true);
     setPredictionError('');
+    setPdfMessage('');
     try {
       const response = await fetch(apiUrl('/api/export-pdf'), {
         method: 'POST',
@@ -293,7 +313,15 @@ function App() {
       if (!response.ok) {
         throw new Error(await getApiError(response));
       }
-      downloadBlob(await response.blob(), 'student-adaptability-report.pdf');
+      const filename = getDownloadFilename(response, 'student-adaptability-report.pdf');
+      const url = URL.createObjectURL(await response.blob());
+      setPdfDownload((current) => {
+        if (current) {
+          URL.revokeObjectURL(current.url);
+        }
+        return { url, filename };
+      });
+      setPdfMessage('PDF generated successfully.');
     } catch (error) {
       setPredictionError(error instanceof Error ? error.message : 'PDF export failed.');
     } finally {
@@ -323,7 +351,8 @@ function App() {
       if (!response.ok) {
         throw new Error(await getApiError(response));
       }
-      downloadBlob(await response.blob(), 'batch-predictions.csv');
+      const filename = getDownloadFilename(response, 'batch-predictions.csv');
+      downloadBlob(await response.blob(), filename);
       setBatchMessage('Batch predictions generated successfully.');
     } catch (error) {
       setBatchError(error instanceof Error ? error.message : 'Batch upload failed.');
@@ -559,6 +588,34 @@ function App() {
                     )}
                     Export PDF
                   </button>
+
+                  {pdfMessage ? (
+                    <div className="rounded-md border border-teal-200 bg-teal-50 p-3 text-sm text-teal-700">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                        <span>{pdfMessage}</span>
+                        {pdfDownload ? (
+                          <>
+                            <a
+                              href={pdfDownload.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="font-semibold underline underline-offset-2"
+                            >
+                              View PDF
+                            </a>
+                            <a
+                              href={pdfDownload.url}
+                              download={pdfDownload.filename}
+                              className="font-semibold underline underline-offset-2"
+                            >
+                              Download PDF
+                            </a>
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               ) : (
                 <div className="mt-6 rounded-lg border border-dashed border-slate-300 p-8 text-center">
